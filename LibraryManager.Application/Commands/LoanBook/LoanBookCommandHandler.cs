@@ -22,9 +22,10 @@ namespace LibraryManager.Application.Commands.LoanBook
         {
             var book = await _bookRepository.GetByIdAsync(request.Id);
 
+            book.Loan();
+
             await _bookRepository.SaveChangesAsync();
 
-            var test = book.Status;
             return Unit.Value;
         }
     }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManager.Application.Commands.GiveBackBook
+namespace LibraryManager.Application.Commands.DeleteBook
 {
-    public class GiveBookBackCommand : IRequest<Unit>
+    public class DeleteBookCommand : IRequest<Unit>
     {
-        public GiveBookBackCommand(int id)
+        public DeleteBookCommand(int id)
         {
             Id = id;
         }

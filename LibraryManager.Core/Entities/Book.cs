@@ -49,5 +49,10 @@ namespace LibraryManager.Core.Entities
                 Status = BookStatusEnum.Avaliable;
             }
         }
+
+        public void Remove()
+        {
+            Status = BookStatusEnum.Out;
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using LibraryManager.Application.Commands.CreateBook;
-using LibraryManager.Application.Commands.GiveBackBook;
+using LibraryManager.Application.Commands.DeleteBook;
 using LibraryManager.Application.Commands.LoanBook;
+using LibraryManager.Application.Commands.ReceiveBook;
 using LibraryManager.Application.Queries.GetAllBooks;
 using LibraryManager.Application.Queries.GetByIdBooks;
-using LibraryManager.Core.Entities;
+using LibraryManager.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,7 +49,7 @@ namespace LibraryManager.API.Controllers
         }
 
         [HttpPut("{id}/loan")]
-        public async Task<IActionResult> MakeLoan(int id)
+        public async Task<IActionResult> Loan(int id)
         {
             var command = new LoanBookCommand(id);
 
@@ -57,12 +58,24 @@ namespace LibraryManager.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}/back")]
-        public async Task<IActionResult> GiveBack(int id)
+        [HttpPut("{id}/receive")]
+        public async Task<IActionResult> Receive(int id)
         {
-            var command = new GiveBookBackCommand(id);
+            var command = new ReceiveBookCommand(id);
 
             var result = await _mediator.Send(command);
+
+            var messageModel = new MessageBookReceiveViewModel(result);
+
+            return Ok(messageModel);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteBookCommand(id);
+
+            await _mediator.Send(command);
 
             return NoContent();
         }

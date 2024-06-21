@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Infrastructure", "LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj", "{30691A9C-4D86-496C-A24E-49F26FD966E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Core", "LibraryManager.Core\LibraryManager.Core.csproj", "{1C5449C9-D304-4958-96C6-77DDAD09B199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Core", "LibraryManager.Core\LibraryManager.Core.csproj", "{1C5449C9-D304-4958-96C6-77DDAD09B199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

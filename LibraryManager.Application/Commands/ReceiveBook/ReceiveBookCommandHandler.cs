@@ -1,4 +1,5 @@
-﻿using LibraryManager.Core.Repositories;
+﻿using LibraryManager.Application.ViewModels;
+using LibraryManager.Core.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager.Application.Commands.ReceiveBook
 {
-    public class ReceiveBookCommandHandler : IRequestHandler<ReceiveBookCommand, string>
+    public class ReceiveBookCommandHandler : IRequestHandler<ReceiveBookCommand, MessageBookReceiveViewModel>
     {
         private readonly IBookRepository _bookRepository;
 
@@ -17,7 +18,7 @@ namespace LibraryManager.Application.Commands.ReceiveBook
             _bookRepository = bookRepository;
         }
 
-        public async Task<string> Handle(ReceiveBookCommand request, CancellationToken cancellationToken)
+        public async Task<MessageBookReceiveViewModel> Handle(ReceiveBookCommand request, CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetByIdAsync(request.Id);
 
@@ -29,12 +30,14 @@ namespace LibraryManager.Application.Commands.ReceiveBook
 
             TimeSpan difference = book.LoanDate.Subtract(now);
 
+            var message = "Entrega em dia";
+
             if (difference.TotalDays > 0)
             {
-                return $"Atraso de {difference.TotalDays}";
+                message = $"Atraso de {difference.TotalDays}";
             }
 
-            return "Entrega em dia";
+            return new MessageBookReceiveViewModel(message);
         }
     }
 }

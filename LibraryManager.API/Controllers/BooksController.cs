@@ -65,9 +65,7 @@ namespace LibraryManager.API.Controllers
 
             var result = await _mediator.Send(command);
 
-            var messageModel = new MessageBookReceiveViewModel(result);
-
-            return Ok(messageModel);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]

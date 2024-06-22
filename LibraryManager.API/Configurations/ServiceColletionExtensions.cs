@@ -8,8 +8,7 @@ namespace LibraryManager.API.Configurations
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IBookRepository, BookRepository>();
-            //services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddScoped<ILoanRepository, ILoanRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

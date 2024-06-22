@@ -1,5 +1,8 @@
+using FluentValidation.AspNetCore;
 using LibraryManager.API.Configurations;
+using LibraryManager.API.Filters;
 using LibraryManager.Application.Queries.GetAllBooks;
+using LibraryManager.Application.Validators;
 using LibraryManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -14,6 +17,9 @@ var connectionString = configuration.GetConnectionString("LibraryCs");
 builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(connectionString));
 
 services.AddInfrastructure();
+
+services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateBookCommandValidator>());
 
 builder.Services.AddControllers();
 

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using LibraryManager.Application.ViewModels;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManager.Application.Commands.ReceiveBook
 {
-    public class ReceiveBookCommand : IRequest<string>
+    public class ReceiveBookCommand : IRequest<MessageBookReceiveViewModel>
     {
         public ReceiveBookCommand(int id)
         {

@@ -12,13 +12,12 @@ namespace LibraryManager.Core.Entities
         {
             Name = name;
             Email = email;
-            Loans = new List<Loan>();
         }
 
         public string Name { get; private set; }
 
         public string Email { get; private set; }
 
-        public List<Loan> Loans { get; private set; }
+        public Book? Book { get; private set; }
     }
 }

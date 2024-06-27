@@ -16,7 +16,6 @@ namespace LibraryManager.Core.Entities
             ISBN = iSBN;
             PublicationYear = publicationYear;
             Status = BookStatusEnum.Avaliable;
-            Loans = new List<Loan>();
         }
 
         public string Title { get; private set; }
@@ -31,22 +30,26 @@ namespace LibraryManager.Core.Entities
 
         public DateTime LoanDate { get; private set; }
 
-        public List<Loan> Loans { get; private set; }
+        public int UserId { get; private set; }
 
-        public void Loan()
+        public User Client { get; private set; }
+
+        public void Loan(int idClient)
         {
             if (Status == BookStatusEnum.Avaliable)
             {
                 Status = BookStatusEnum.InLoan;
                 LoanDate = DateTime.Now;
+                UserId = idClient;
             }
         }
 
         public void Receive()
         {
-            if (Status == BookStatusEnum.InLoan)
+            if (Status == BookStatusEnum.InLoan && UserId != 0)
             {
                 Status = BookStatusEnum.Avaliable;
+                UserId = 0;
             }
         }
 

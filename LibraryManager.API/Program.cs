@@ -24,6 +24,18 @@ services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter))
 builder.Services.AddControllers();
 
 services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllBooksQuery>());
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowAllHeadersPolicy",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7256")
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -38,6 +50,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("MyAllowAllHeadersPolicy");
 
 app.UseAuthorization();
 

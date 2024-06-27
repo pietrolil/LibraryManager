@@ -1,4 +1,6 @@
 ﻿using LibraryManager.Application.Commands.CreateUser;
+using LibraryManager.Application.Queries.GetAllBooks;
+using LibraryManager.Application.Queries.GetAllUsers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +13,16 @@ namespace LibraryManager.API.Controllers
         public UsersController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var getAllUsersQuery = new GetAllUsersQuery();
+
+            var users = await _mediator.Send(getAllUsersQuery);
+
+            return Ok(users);
         }
 
         [HttpPost]

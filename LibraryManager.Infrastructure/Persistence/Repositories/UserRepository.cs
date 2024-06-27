@@ -24,5 +24,10 @@ namespace LibraryManager.Infrastructure.Persistence.Repositories
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<List<User>> GetAllAsync()
+        {
+            return await _dbContext.Users.ToListAsync();
+        }
     }
 }

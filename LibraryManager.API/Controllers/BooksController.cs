@@ -48,12 +48,12 @@ namespace LibraryManager.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        [HttpPut("{id}/loan")]
-        public async Task<IActionResult> Loan(int id)
+        [HttpPut("/loan")]
+        public async Task<IActionResult> Loan([FromBody] LoanBookCommand command)
         {
-            var command = new LoanBookCommand(id);
+            var send = new LoanBookCommand(command.BookId, command.UserId);
 
-            await _mediator.Send(command);
+            await _mediator.Send(send);
 
             return NoContent();
         }

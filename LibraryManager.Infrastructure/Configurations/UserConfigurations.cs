@@ -15,6 +15,12 @@ namespace LibraryManager.Infrastructure.Configurations
         {
             builder
                 .HasKey(p => p.Id);
+
+            builder
+                .HasOne(p => p.Book)
+                .WithOne(u => u.Client)
+                .HasForeignKey<Book>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

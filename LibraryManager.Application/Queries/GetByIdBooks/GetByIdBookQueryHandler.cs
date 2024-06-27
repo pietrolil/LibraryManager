@@ -30,7 +30,8 @@ namespace LibraryManager.Application.Queries.GetByIdBooks
                 book.Author,
                 book.Status,
                 book.ISBN,
-                book.PublicationYear
+                book.PublicationYear,
+                book.Client.Name
             );
 
             return bookDetailsViewModel;

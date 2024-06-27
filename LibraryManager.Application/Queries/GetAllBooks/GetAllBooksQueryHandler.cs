@@ -18,7 +18,7 @@ namespace LibraryManager.Application.Queries.GetAllBooks
             var books = await _bookRepository.GetAllAsync();
 
             var booksViewModel = books
-                .Select(p => new BooksViewModel(p.Id, p.Title, p.Author, p.ISBN, p.PublicationYear))
+                .Select(p => new BooksViewModel(p.Id, p.Title, p.Author, p.ISBN, p.PublicationYear, p.Status))
                 .ToList();
 
             return booksViewModel;

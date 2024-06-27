@@ -9,11 +9,14 @@ namespace LibraryManager.Application.Commands.LoanBook
 {
     public class LoanBookCommand : IRequest<Unit>
     {
-        public LoanBookCommand(int id)
+        public LoanBookCommand(int bookId, int userId)
         {
-            Id = id;
+            BookId = bookId;
+            UserId = userId;
         }
 
-        public int Id { get; private set; }
+        public int BookId { get; private set; }
+
+        public int UserId { get; private set; }
     }
 }

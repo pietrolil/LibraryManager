@@ -20,9 +20,9 @@ namespace LibraryManager.Application.Commands.LoanBook
 
         public async Task<Unit> Handle(LoanBookCommand request, CancellationToken cancellationToken)
         {
-            var book = await _bookRepository.GetByIdAsync(request.Id);
+            var book = await _bookRepository.GetByIdAsync(request.BookId);
 
-            book.Loan();
+            book.Loan(request.UserId);
 
             await _bookRepository.SaveChangesAsync();
 

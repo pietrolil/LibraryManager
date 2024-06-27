@@ -31,7 +31,9 @@ namespace LibraryManager.Infrastructure.Persistence.Repositories
 
         public async Task<Book> GetByIdAsync(int id)
         {
-            return await _dbContext.Books.SingleOrDefaultAsync(p => p.Id == id);
+            return await _dbContext.Books
+                .Include(p => p.Client)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task AddAsync(Book book)

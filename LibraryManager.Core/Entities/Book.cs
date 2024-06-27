@@ -30,7 +30,7 @@ namespace LibraryManager.Core.Entities
 
         public DateTime LoanDate { get; private set; }
 
-        public int UserId { get; private set; }
+        public int? UserId { get; private set; }
 
         public User Client { get; private set; }
 

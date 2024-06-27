@@ -51,13 +51,14 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Books");
                 });
@@ -88,8 +89,7 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
                     b.HasOne("LibraryManager.Core.Entities.User", "Client")
                         .WithOne("Book")
                         .HasForeignKey("LibraryManager.Core.Entities.Book", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Client");
                 });

@@ -22,9 +22,7 @@ namespace LibraryManager.Application.Commands.DeleteBook
         {
             var book = await _bookRepository.GetByIdAsync(request.Id);
 
-            book.Remove();
-
-            await _bookRepository.SaveChangesAsync();
+            await _bookRepository.DeleteAsync(book);
 
             return Unit.Value;
         }

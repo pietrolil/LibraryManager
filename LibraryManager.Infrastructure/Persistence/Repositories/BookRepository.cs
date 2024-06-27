@@ -46,5 +46,12 @@ namespace LibraryManager.Infrastructure.Persistence.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync(Book book)
+        {
+            _dbContext.Books.Remove(book);
+
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

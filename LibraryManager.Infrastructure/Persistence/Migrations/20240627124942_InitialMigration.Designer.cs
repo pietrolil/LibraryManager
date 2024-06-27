@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManager.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20240627011856_InitialMigration")]
+    [Migration("20240627124942_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -59,9 +59,7 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
                 });
@@ -90,8 +88,8 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("LibraryManager.Core.Entities.Book", b =>
                 {
                     b.HasOne("LibraryManager.Core.Entities.User", "Client")
-                        .WithOne("Book")
-                        .HasForeignKey("LibraryManager.Core.Entities.Book", "UserId")
+                        .WithMany("Books")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Client");
@@ -99,7 +97,7 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("LibraryManager.Core.Entities.User", b =>
                 {
-                    b.Navigation("Book");
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

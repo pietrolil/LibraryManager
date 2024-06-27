@@ -49,13 +49,8 @@ namespace LibraryManager.Core.Entities
             if (Status == BookStatusEnum.InLoan && UserId != 0)
             {
                 Status = BookStatusEnum.Avaliable;
-                UserId = 0;
+                UserId = null;
             }
-        }
-
-        public void Remove()
-        {
-            Status = BookStatusEnum.Out;
         }
     }
 }

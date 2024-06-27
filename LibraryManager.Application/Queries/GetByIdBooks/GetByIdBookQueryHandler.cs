@@ -31,7 +31,8 @@ namespace LibraryManager.Application.Queries.GetByIdBooks
                 book.Status,
                 book.ISBN,
                 book.PublicationYear,
-                book.Client.Name
+                book.LoanDate.ToString("dd/MM/yyyy HH:mm:ss"),
+                book.Client?.Name
             );
 
             return bookDetailsViewModel;

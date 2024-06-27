@@ -4,7 +4,7 @@ namespace LibraryManager.Application.ViewModels
 {
     public class BookDetailsViewModel
     {
-        public BookDetailsViewModel(int id, string title, string author,BookStatusEnum status, string iSBN, int publicationYear, string clientName)
+        public BookDetailsViewModel(int id, string title, string author,BookStatusEnum status, string iSBN, int publicationYear, string loanDate, string clientName)
         {
             Id = id;
             Title = title;
@@ -12,6 +12,7 @@ namespace LibraryManager.Application.ViewModels
             Status = status;
             ISBN = iSBN;
             PublicationYear = publicationYear;
+            LoanDate = loanDate;
             ClientName = clientName;
         }
 
@@ -27,6 +28,8 @@ namespace LibraryManager.Application.ViewModels
 
         public int PublicationYear { get; private set; }
 
-        public string ClientName { get; private set; }
+        public string? ClientName { get; private set; }
+
+        public string? LoanDate { get; private set; }
     }
 }

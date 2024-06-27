@@ -12,5 +12,7 @@ namespace LibraryManager.Core.Repositories
         Task AddAsync(Book book);
 
         Task SaveChangesAsync();
+
+        Task DeleteAsync(Book book);
     }
 }

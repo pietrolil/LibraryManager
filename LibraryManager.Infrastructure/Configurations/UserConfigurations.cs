@@ -17,9 +17,9 @@ namespace LibraryManager.Infrastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                .HasOne(p => p.Book)
+                .HasMany(p => p.Books)
                 .WithOne(u => u.Client)
-                .HasForeignKey<Book>(p => p.UserId)
+                .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

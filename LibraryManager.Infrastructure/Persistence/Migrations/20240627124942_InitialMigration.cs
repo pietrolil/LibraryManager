@@ -53,9 +53,7 @@ namespace LibraryManager.Infrastructure.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Books_UserId",
                 table: "Books",
-                column: "UserId",
-                unique: true,
-                filter: "[UserId] IS NOT NULL");
+                column: "UserId");
         }
 
         /// <inheritdoc />
